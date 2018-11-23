@@ -10,11 +10,13 @@ loops = [4, 2]
 #继承threading.Thread类的一个子类
 class MyThread(threading.Thread):
     def __init__(self, func, args, name = ''):
+        #调用父类的初始化函数
         threading.Thread.__init__(self)
         self.name = name
         self.func = func
         self.args = args
 
+    #重写run方法，使用start创建线程之后，会调用run方法
     def run(self):
         self.func(*self.args)
 

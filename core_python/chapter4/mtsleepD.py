@@ -28,7 +28,7 @@ def main():
     nloops = range(len(loops))
 
     for i in nloops:
-        #传递对象作为线程参数
+        #传递对象作为线程参数，和函数参数是一样的，创建线程的时候，调用对象的__call__函数
         t = threading.Thread(target = ThreadFunc(loop, (i, loops[i]), loop.__name__))
         threads.append(t)
 
