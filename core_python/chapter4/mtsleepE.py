@@ -20,6 +20,7 @@ class MyThread(threading.Thread):
     def run(self):
         self.func(*self.args)
 
+#线程方法
 def loop(nloop, nsec):
     print 'start loop ', nloop, ' at ', ctime()
     sleep(nsec)
@@ -30,13 +31,16 @@ def main():
     threads = []
     nloops = range(len(loops))
 
+    #创建threading.Thread的子类的实例
     for i in nloops:
         t = MyThread(loop, (i, loops[i]), loop.__name__)
         threads.append(t)
 
+    #创建线程
     for i in nloops:
         threads[i].start()
 
+    #主线程等待所有线程结束
     for i in nloops:
         threads[i].join()
 

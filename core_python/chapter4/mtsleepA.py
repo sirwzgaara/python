@@ -1,4 +1,4 @@
-
+# -*- coding: UTF-8 -*-
 #!usr/local/env python
 
 import thread
@@ -16,6 +16,7 @@ def loop1():
 
 def main():
     print 'start at ', ctime()
+    #thread模块核心函数，传入函数或者对象，参数使用元组，这里没有参数
     thread.start_new_thread(loop0, ())
     thread.start_new_thread(loop1, ())
     sleep(6)
