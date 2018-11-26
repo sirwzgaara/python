@@ -1,30 +1,30 @@
+# -*- coding: UTF-8 -*-
 #!/usr/bin/env python
+
 import thread
 from time import sleep
 import threading
+from random import randrange
+from atexit import register
+from Queue import Queue
 
-def func():
-    print threading.stack_size()
+def writeQ(queue):
+    for i in range(100):
+        tmp = queue.get(True)
+        queue.put(tmp + 1, True)
+
+def readQ(queue):
+    for i in range(100):
+        tmp = queue.get(True)
+        queue.put(tmp + 1, True)
 
 def main():
-    lock = thread.allocate_lock()
-    lock.acquire()
-    if lock.locked():
-        print 1
-    else:
-        print 2
-    lock.release()
-    if lock.locked():
-        print 1
-    else:
-        print 2
-    print threading.activeCount()
-    print threading.currentThread()
-    print threading.enumerate()
-    print threading.stack_size()
-    t = threading.Thread(target=func, args=())
-    t.start()
-    t.join()
+    q = Queue(32)
+    q.put(0, True)
+    threading.Thread(target=writeQ, args = (q,)).start()
+    threading.Thread(target=readQ, args = (q,)).start()
+    sleep(2)
+    print q.get(True)
 
 if __name__ == '__main__':
     main()
