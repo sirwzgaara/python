@@ -10,4 +10,5 @@ MyThread.py     将继承threading.Thread的子类封装成包，其他模块可
 facfic.py       多线程和单线程执行若干函数对比区别
 atexit_local.py       退出机制
 candy.py        信号量，消费者和生产者系统
+proccons.py     使用Queue作为线程间通信机制
 
