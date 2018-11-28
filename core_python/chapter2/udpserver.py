@@ -11,6 +11,7 @@ BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
 udpSerSock = socket(AF_INET, SOCK_DGRAM)
+#UDP不需要监听，但是仍然要绑定端口
 udpSerSock.bind(ADDR)
 
 while (True):

@@ -15,6 +15,7 @@ while True:
     data = raw_input('> ')
     if not data:
         break
+    #UDP特点没有连接，所以send函数需要指定地址
     udpCliSock.sendto(data, ADDR)
     data, ADDR = udpCliSock.recvfrom(BUFSIZ)
     if not data:
