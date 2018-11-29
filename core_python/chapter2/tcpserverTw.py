@@ -15,15 +15,9 @@ class TSServProtocol(protocol.Protocol):
     #收到客户端发来的数据，调用此方法
     def dataReceived(self, data):
         self.transport.write('[%s] %s' % (ctime(), data))
-    def buildProtocol(self, addr):
-        p = self.protocol()
-        p.factory = self
-        return p
 
 factory = protocol.Factory()
-factory.procotol = TSServProtocol
-print type(TSServProtocol)
-print type(factory.protocol)
+factory.protocol = TSServProtocol
 print 'waiting for connection...'
 reactor.listenTCP(PORT, factory)
 reactor.run()
