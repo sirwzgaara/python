@@ -14,6 +14,7 @@ tcpCliSock.connect(ADDR)
 
 while True:
     data = raw_input('> ')
+    #用户没有输入，也就是直接敲enter的时候，退出客户端
     if not data:
         break
     tcpCliSock.send(data)

@@ -16,9 +16,11 @@ class TSServProtocol(protocol.Protocol):
     def dataReceived(self, data):
         self.transport.write('[%s] %s' % (ctime(), data))
 
+#工厂模式，每得到一个连接，都能制造协议的一个实例
 factory = protocol.Factory()
 factory.protocol = TSServProtocol
 print 'waiting for connection...'
+#通过reactor监听TCP
 reactor.listenTCP(PORT, factory)
 reactor.run()
 

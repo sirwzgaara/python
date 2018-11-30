@@ -17,6 +17,7 @@ udpSerSock.bind(ADDR)
 while (True):
     print 'waiting for message...'
     data, addr = udpSerSock.recvfrom(BUFSIZ)
+    #udp没有连接，需要指定地址
     udpSerSock.sendto('[%s] %s' % (ctime(), data), addr)
     print '---received from and returned to', addr
 
