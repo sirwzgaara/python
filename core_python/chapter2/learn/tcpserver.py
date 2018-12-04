@@ -13,6 +13,7 @@ ADDR = (HOST, PORT)
 #建立socket，绑定，监听
 tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
+#listen的参数是，连接被转接或者拒绝之前允许传入的最大请求数，即支持的并发数量
 tcpSerSock.listen(5)
 
 while True:
